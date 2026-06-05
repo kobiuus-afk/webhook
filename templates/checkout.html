@@ -10,7 +10,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 
         body {
-            background: #0d0f1a;           /* Color exacto de tu imagen original */
+            background: #0d0f1a;
             font-family: 'Arial', sans-serif;
             color: #ffffff;
             text-align: center;
@@ -48,7 +48,7 @@
             padding: 30px 25px;
             border-radius: 16px;
             border: 2px solid #00ff9d;
-            box-shadow: 0 0 35px rgba(0, 255, 157, 0.3);
+            box-shadow: 0 0 35px rgba(0, 255, 157, 0.35);
         }
 
         .secure {
@@ -56,6 +56,10 @@
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .amount-box {
@@ -93,7 +97,7 @@
             text-align: left;
             color: #00ff9d;
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         #card-element {
@@ -101,12 +105,19 @@
             border: 1px solid #333;
             border-radius: 8px;
             padding: 12px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .logos {
-            text-align: right;
-            margin-bottom: 15px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .logos img {
+            height: 24px;
+            filter: brightness(1.1);
         }
 
         .pay-btn {
@@ -133,6 +144,10 @@
             margin-top: 20px;
             font-size: 13px;
             color: #777;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
         .error-box {
@@ -152,10 +167,12 @@
             }
             .card-box {
                 padding: 25px 20px;
-                border-radius: 14px;
             }
             #amount {
                 font-size: 28px;
+            }
+            .logos img {
+                height: 22px;
             }
         }
     </style>
@@ -166,7 +183,9 @@
     <div class="webhook">WEBHOOK</div>
 
     <div class="card-box">
-        <div class="secure">🔒 PAGO SEGURO</div>
+        <div class="secure">
+            🔒 PAGO SEGURO
+        </div>
 
         <div class="amount-box">
             <div class="amount-label">Monto a pagar (MXN)</div>
@@ -178,19 +197,22 @@
 
         <div id="card-element"></div>
 
+        <!-- Logos mejorados -->
         <div class="logos">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Visa_2014_logo_detail.svg" height="28" alt="Visa">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Mastercard_2019_logo.svg" height="28" alt="Mastercard" style="margin-left: 12px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Visa_2014_logo_detail.svg" alt="Visa">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Mastercard_2019_logo.svg" alt="Mastercard">
         </div>
 
         <button id="payBtn" class="pay-btn">🔒 PAGAR AHORA</button>
 
         <div id="errorBox" class="error-box"></div>
 
-        <div class="ssl">🔒 Tus datos están protegidos con encriptación SSL.</div>
+        <div class="ssl">
+            🔒 Tus datos están protegidos con encriptación SSL.
+        </div>
     </div>
 
-    <!-- === TU LÓGICA ORIGINAL SIN CAMBIOS === -->
+    <!-- === TU LÓGICA ORIGINAL === -->
     <script>
         const stripe = Stripe("{{ publishable_key }}");
         const elements = stripe.elements();

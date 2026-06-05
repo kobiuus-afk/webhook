@@ -10,9 +10,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 
         body {
-            background: #0a0b14;
+            background: #0d0f1a;           /* Color exacto de tu imagen original */
             font-family: 'Arial', sans-serif;
-            color: #fff;
+            color: #ffffff;
             text-align: center;
             margin: 0;
             padding: 20px 10px;
@@ -32,20 +32,23 @@
             font-size: 42px;
             font-weight: 900;
             color: #00ff9d;
-            text-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d, 0 0 40px #00ff9d;
-            letter-spacing: 6px;
+            text-shadow: 
+                0 0 8px #00ff9d,
+                0 0 20px #00ff9d,
+                0 0 40px #00ff9d;
+            letter-spacing: 8px;
             margin: 10px 0 25px 0;
         }
 
         .card-box {
-            background: #11131f;
+            background: #11141f;
             width: 100%;
             max-width: 420px;
             margin: 0 auto;
             padding: 30px 25px;
             border-radius: 16px;
             border: 2px solid #00ff9d;
-            box-shadow: 0 0 30px rgba(0, 255, 157, 0.25);
+            box-shadow: 0 0 35px rgba(0, 255, 157, 0.3);
         }
 
         .secure {
@@ -64,7 +67,7 @@
         }
 
         .amount-label {
-            color: #aaa;
+            color: #b0b0b0;
             font-size: 14px;
             margin-bottom: 5px;
         }
@@ -117,19 +120,19 @@
             border-radius: 8px;
             cursor: pointer;
             margin-top: 10px;
-            box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.6);
             transition: all 0.3s;
         }
 
         .pay-btn:hover {
-            background: #00cc7a;
+            background: #00e68a;
             transform: translateY(-2px);
         }
 
         .ssl {
             margin-top: 20px;
             font-size: 13px;
-            color: #666;
+            color: #777;
         }
 
         .error-box {
@@ -141,28 +144,18 @@
             border-radius: 8px;
         }
 
-        /* ================= RESPONSIVE ================= */
+        /* RESPONSIVE */
         @media (max-width: 480px) {
             .webhook {
                 font-size: 36px;
-                letter-spacing: 4px;
+                letter-spacing: 5px;
             }
             .card-box {
                 padding: 25px 20px;
-                border-radius: 12px;
+                border-radius: 14px;
             }
             #amount {
                 font-size: 28px;
-            }
-            .pay-btn {
-                font-size: 17px;
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .webhook {
-                font-size: 32px;
             }
         }
     </style>
@@ -170,7 +163,7 @@
 <body>
 
     <div class="terminal">ESTILO 3 - TERMINAL PREMIUM</div>
-    <div class="webhook">SERVER SERVICE CHECKOUT</div>
+    <div class="webhook">WEBHOOK</div>
 
     <div class="card-box">
         <div class="secure">🔒 PAGO SEGURO</div>

@@ -1,46 +1,59 @@
-from flask import Flask, render_template, request, jsonify
-import os
+from flask import Flask, request, jsonify, render_template
 import stripe
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
-stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
+# Clave secreta Stripe
+stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
+
 
 @app.route("/")
 def index():
     return render_template(
-        "index.html",
-        publishable_key=os.environ.get("STRIPE_PUBLISHABLE_KEY", "")
+        "checkout.html",
+        publishable_key=os.getenv("STRIPE_PUBLISHABLE_KEY")
     )
+
 
 @app.route("/create-payment-intent", methods=["POST"])
-def create_payment_intent():
-    data = request.get_json()
-    amount = float(data.get("amount", 0))
+def create_payment():
+    try:
+        data = request.get_json()
 
-    if amount < 10:
-        return jsonify({"error": "El monto mínimo es $10 MXN"}), 400
+        amount_str = data.get("amount", "").strip()
 
-    intent = stripe.PaymentIntent.create(
-        amount=int(amount * 100),
-        currency="mxn",
-        automatic_payment_methods={"enabled": True}
-    )
+        # Validación del monto recibido
+        if not amount_str.isdigit():
+            return jsonify({"error": "Monto inválido"}), 400
 
-    return jsonify({"clientSecret": intent.client_secret})
+        amount = int(amount_str)
+
+        if amount < 10:
+            return jsonify({"error": "El monto mínimo es $10 MXN"}), 400
+
+        amount_centavos = amount * 100
+
+        intent = stripe.PaymentIntent.create(
+            amount=amount_centavos,
+            currency="mxn",
+            description="Pago desde la web",
+            automatic_payment_methods={"enabled": True}
+        )
+
+        return jsonify({"clientSecret": intent.client_secret})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
 
 @app.route("/success")
 def success():
-    return render_template("success.html")
+    return "<h1 style='color:green;text-align:center;'>✔ PAGO COMPLETADO</h1>"
 
-@app.route("/failed")
-def failed():
-    msg = request.args.get("msg", "Pago rechazado")
-    return render_template("failed.html", msg=msg)
-
-@app.route("/webhook", methods=["POST"])
-def webhook():
-    return "", 200
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(port=5000, debug=True)

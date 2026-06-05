@@ -1,78 +1,27 @@
-body{
-    background:#050505;
-    color:#39ff14;
-    font-family:Consolas, Monaco, monospace;
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+body {
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
 }
 
-.container{
-    width:90%;
-    max-width:800px;
-    padding:30px;
-    border:1px solid #39ff14;
-    box-shadow:
-        0 0 10px #39ff14,
-        0 0 20px #39ff14;
-    background:#0a0a0a;
+.container {
+    width: 400px;
+    margin: 50px auto;
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.banner{
-    white-space:pre;
-    overflow-x:auto;
-    text-align:center;
-    font-size:14px;
-    line-height:1.1;
-    margin-bottom:25px;
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
 }
 
-h2{
-    text-align:center;
-    margin-bottom:20px;
-    letter-spacing:2px;
-}
-
-input{
-    width:100%;
-    padding:14px;
-    box-sizing:border-box;
-    background:#000;
-    color:#39ff14;
-    border:1px solid #39ff14;
-    outline:none;
-}
-
-input:focus{
-    box-shadow:0 0 10px #39ff14;
-}
-
-button{
-    width:100%;
-    padding:16px;
-    margin-top:20px;
-    background:#39ff14;
-    border:none;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.2s;
-}
-
-button:hover{
-    transform:translateY(-1px);
-    box-shadow:0 0 15px #39ff14;
-}
-
-#payment-element{
-    margin-top:20px;
-    padding:15px;
-    background:#101010;
-    border:1px solid #39ff14;
-}
-
-p{
-    text-align:center;
-    opacity:.8;
+button {
+    background: #635bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
 }

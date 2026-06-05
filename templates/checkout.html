@@ -100,6 +100,7 @@
             margin-bottom: 10px;
         }
 
+        /* === CAMPO DE TARJETA CON TEXTO BLANCO === */
         #card-element {
             background: #1a1f2e;
             border: 1px solid #333;
@@ -180,9 +181,8 @@
 <body>
 
     <div class="terminal">•╚════◄░░░S̶E̶R̶V̶I̶C̶I̶O̶ ̶E̶M̶P̶R̶E̶S̶A̶R̶I̶A̶L̶░░░►════╝•</div>
-    <div class="webhook">╔═╝╔═╝╔═║║ ║╝╔═╝╔═╝  ╔═╝║ ║╔═╝╔═╝║ ║╔═║║ ║═╔╝
-══║╔═╝╔╔╝║ ║║║  ╔═╝  ║  ╔═║╔═╝║  ╔╝ ║ ║║ ║ ║ 
-══╝══╝╝ ╝ ╝ ╝══╝══╝  ══╝╝ ╝══╝══╝╝ ╝══╝══╝ ╝ </div>
+    <div class="webhook">░S░E░R░V░I░C░E ░C░H░E░C░K░O░U░T
+</div>
 
     <div class="card-box">
         <div class="secure">
@@ -199,7 +199,6 @@
 
         <div id="card-element"></div>
 
-        <!-- Logos mejorados -->
         <div class="logos">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Visa_2014_logo_detail.svg" alt="Visa">
             <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Mastercard_2019_logo.svg" alt="Mastercard">
@@ -214,11 +213,27 @@
         </div>
     </div>
 
-    <!-- === TU LÓGICA ORIGINAL === -->
     <script>
         const stripe = Stripe("{{ publishable_key }}");
         const elements = stripe.elements();
-        const card = elements.create("card", { hidePostalCode: true });
+        
+        const card = elements.create("card", { 
+            hidePostalCode: true,
+            style: {
+                base: {
+                    color: "#ffffff",           /* Texto blanco */
+                    fontFamily: 'Arial, sans-serif',
+                    fontSize: '16px',
+                    '::placeholder': {
+                        color: '#888888'        /* Placeholder más claro */
+                    }
+                },
+                invalid: {
+                    color: '#ff6b6b'            /* Color para errores */
+                }
+            }
+        });
+        
         card.mount("#card-element");
 
         const errorBox = document.getElementById("errorBox");
@@ -274,7 +289,3 @@
     </script>
 </body>
 </html>
-
-
-
-

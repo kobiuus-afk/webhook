@@ -1,0 +1,36 @@
+body{
+background:#050505;
+color:#39ff14;
+font-family:Consolas,Monaco,monospace;
+margin:0;
+}
+.container{
+max-width:700px;
+margin:40px auto;
+padding:20px;
+border:1px solid #39ff14;
+box-shadow:0 0 20px #39ff14;
+}
+.banner{
+white-space:pre;
+overflow-x:auto;
+font-size:20px;
+text-align:center;
+}
+input,button{
+width:100%;
+padding:14px;
+margin-top:15px;
+box-sizing:border-box;
+}
+button{
+background:#39ff14;
+border:none;
+font-weight:bold;
+cursor:pointer;
+}
+#payment-element-placeholder{
+border:1px solid #39ff14;
+padding:30px;
+margin-top:15px;
+}

@@ -4,56 +4,132 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pago Seguro</title>
-
     <script src="https://js.stripe.com/v3/"></script>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
         body {
-            background: #0d0f1a;
-            font-family: Arial, sans-serif;
-            color: white;
+            background: #0a0b14;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
             text-align: center;
             margin: 0;
-            padding: 0;
+            padding: 20px 10px;
+            min-height: 100vh;
         }
 
-        .banner {
-            font-size: 50px;
+        .terminal {
+            color: #00ff9d;
+            font-size: 13px;
+            letter-spacing: 3px;
             font-weight: bold;
-            color: cyan;
-            margin-top: 20px;
-            filter: drop-shadow(0 0 10px cyan);
-            letter-spacing: 8px;
+            margin-bottom: 8px;
+        }
+
+        .webhook {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: #00ff9d;
+            text-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d, 0 0 40px #00ff9d;
+            letter-spacing: 6px;
+            margin: 10px 0 25px 0;
         }
 
         .card-box {
-            background: #1c1f2e;
-            width: 380px;
-            margin: 40px auto;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px #0008;
+            background: #11131f;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 30px 25px;
+            border-radius: 16px;
+            border: 2px solid #00ff9d;
+            box-shadow: 0 0 30px rgba(0, 255, 157, 0.25);
         }
 
-        input {
-            width: 92%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 6px;
+        .secure {
+            color: #00ff9d;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .amount-box {
+            background: #1a1f2e;
+            border: 2px solid #00ff9d;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+        .amount-label {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        #amount {
+            background: transparent;
             border: none;
+            color: #00ff9d;
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
             outline: none;
         }
 
+        .min-amount {
+            font-size: 13px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .payment-info {
+            text-align: left;
+            color: #00ff9d;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        #card-element {
+            background: #1a1f2e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .logos {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
         .pay-btn {
-            width: 95%;
-            padding: 14px;
+            width: 100%;
+            padding: 16px;
+            background: #00ff9d;
+            color: #000;
+            font-weight: bold;
+            font-size: 18px;
             border: none;
-            background: #6d63ff;
-            color: white;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
             margin-top: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
+            transition: all 0.3s;
+        }
+
+        .pay-btn:hover {
+            background: #00cc7a;
+            transform: translateY(-2px);
+        }
+
+        .ssl {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
         }
 
         .error-box {
@@ -62,27 +138,66 @@
             color: white;
             padding: 12px;
             margin-top: 15px;
-            border-radius: 6px;
+            border-radius: 8px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 480px) {
+            .webhook {
+                font-size: 36px;
+                letter-spacing: 4px;
+            }
+            .card-box {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            #amount {
+                font-size: 28px;
+            }
+            .pay-btn {
+                font-size: 17px;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .webhook {
+                font-size: 32px;
+            }
         }
     </style>
 </head>
-
 <body>
 
-    <div class="banner">Server Service checkout</div>
+    <div class="terminal">ESTILO 3 - TERMINAL PREMIUM</div>
+    <div class="webhook">SERVER SERVICE CHECKOUT</div>
 
     <div class="card-box">
-        <h2>💳 Pago Seguro</h2>
+        <div class="secure">🔒 PAGO SEGURO</div>
 
-        <input id="amount" type="number" min="10" value="10" placeholder="Monto en MXN" />
+        <div class="amount-box">
+            <div class="amount-label">Monto a pagar (MXN)</div>
+            <input id="amount" type="number" min="10" value="10" placeholder="Monto en MXN" />
+            <div class="min-amount">Monto mínimo: 10 MXN</div>
+        </div>
+
+        <div class="payment-info">Información de pago</div>
 
         <div id="card-element"></div>
 
-        <button id="payBtn" class="pay-btn">PAGAR AHORA</button>
+        <div class="logos">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Visa_2014_logo_detail.svg" height="28" alt="Visa">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Mastercard_2019_logo.svg" height="28" alt="Mastercard" style="margin-left: 12px;">
+        </div>
+
+        <button id="payBtn" class="pay-btn">🔒 PAGAR AHORA</button>
 
         <div id="errorBox" class="error-box"></div>
+
+        <div class="ssl">🔒 Tus datos están protegidos con encriptación SSL.</div>
     </div>
 
+    <!-- === TU LÓGICA ORIGINAL SIN CAMBIOS === -->
     <script>
         const stripe = Stripe("{{ publishable_key }}");
         const elements = stripe.elements();
@@ -121,7 +236,7 @@
             if (data.error) {
                 showError(data.error);
                 payBtn.disabled = false;
-                payBtn.innerHTML = "PAGAR AHORA";
+                payBtn.innerHTML = "🔒 PAGAR AHORA";
                 return;
             }
 
@@ -134,7 +249,7 @@
             if (result.error) {
                 showError(result.error.message);
                 payBtn.disabled = false;
-                payBtn.innerHTML = "PAGAR AHORA";
+                payBtn.innerHTML = "🔒 PAGAR AHORA";
             } else {
                 window.location.href = "/success";
             }
